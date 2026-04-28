@@ -3,7 +3,7 @@ import { Home, Tv, Film, Search, Settings, User } from 'lucide-react';
 import { HOME_POSTERS, MOCK_SCENE, LIVE_CHANNELS, MOVIES_VOD } from '../constants';
 
 interface Props {
-  onSelect: () => void;
+  onSelect: (videoId: 'panibottle' | 'harrypotter') => void;
 }
 
 export const HomeMenu: React.FC<Props> = ({ onSelect }) => {
@@ -32,7 +32,7 @@ export const HomeMenu: React.FC<Props> = ({ onSelect }) => {
           {/* Hero Banner (Selectable) */}
           <div 
             className="relative w-full h-[500px] flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer group border-4 border-transparent focus:border-blue-500 hover:border-blue-500 transition-all shadow-2xl"
-            onClick={onSelect}
+            onClick={() => onSelect('panibottle')}
           >
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
@@ -105,7 +105,21 @@ export const HomeMenu: React.FC<Props> = ({ onSelect }) => {
           <div>
             <h3 className="text-xl font-bold mb-4 text-gray-100 px-2">인기 영화 & 시리즈</h3>
             <div className="flex gap-4 overflow-x-auto pb-4 px-2 scrollbar-hide">
-              {MOVIES_VOD.map((url, idx) => (
+              {/* Harry Potter Entry Point */}
+              <div 
+                className="min-w-[180px] h-[270px] rounded-xl bg-gray-800 overflow-hidden relative group cursor-pointer border-2 border-transparent hover:border-white transition-all flex-shrink-0"
+                onClick={() => onSelect('harrypotter')}
+              >
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                  style={{ backgroundImage: `url('/images/harry-potter-thumbnail.jpg.jpeg')` }} // 해리포터 썸네일 이미지 경로 (추후 이 경로에 이미지 추가)
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                <div className="absolute top-2 right-2 bg-blue-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-lg">TV+</div>
+              </div>
+              
+              {/* Other VODs (excluding first two) */}
+              {MOVIES_VOD.slice(2).map((url, idx) => (
                 <div 
                   key={idx} 
                   className="min-w-[180px] h-[270px] rounded-xl bg-gray-800 overflow-hidden relative group cursor-pointer border-2 border-transparent hover:border-white transition-all flex-shrink-0"
