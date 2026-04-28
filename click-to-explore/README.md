@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Click-to-Explore 🎬🛒
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Click-to-Explore는 일반 영상 시청 중, 시청자가 원하는 장면에서 직접 공간을 탐험하고 등장하는 아이템을 바로 구매할 수 있는 차세대 인터랙티브 미디어 프로토타입입니다. (기존 `sceneexplore-tv` 프로젝트를 기반으로 확장된 React 애플리케이션입니다.)
 
-## Available Scripts
+## 🌟 주요 기능 (데모 시나리오)
 
-In the project directory, you can run:
+1. **Seamless 모드 전환:** 
+   - 일반 영상 시청 중, 특정 시점에 '탐험(Explore) 모드'로 진입합니다.
+   - 탐험 모드 진입 시, 미리 준비된 1인칭 시점의 3D 공간 이동 영상(Fake 3D)이 재생되어 실제 공간을 돌아다니는 듯한 경험을 제공합니다.
+2. **AI 기반 아이템 자동 인식:**
+   - 탐험 중인 영상 내의 오브젝트(가구, 소품, 의류 등)를 Vertex AI 등 비전 AI 기술을 활용해 자동으로 인식합니다.
+   - 인식된 아이템 정보는 실시간으로 화면 내 구매 창(팝업/오버레이)에 표시되어 시청자가 즉시 구매할 수 있도록 유도합니다.
 
-### `npm start`
+## 🛠 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend:** React (TypeScript), CSS
+- **Backend:** Node.js (Express)
+- **AI / API:** Google Cloud Vertex AI API (영상 내 아이템 분석 및 메타데이터 추출용)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📁 프로젝트 구조
 
-### `npm test`
+```text
+click-to-explore/
+├── backend/                # Node.js 백엔드 서버 (Vertex AI 연동 등 API 처리)
+│   ├── .env.local          # 백엔드 환경변수 파일 (Vertex AI 인증 정보 등)
+│   └── server.js           # Express 서버 진입점
+├── src/                    # React 프론트엔드 소스 코드
+│   ├── components/         # VideoPlayer, ExploreVideoPlayer, CreatorDashboard 등 UI 컴포넌트
+│   ├── App.tsx             # 메인 애플리케이션 컴포넌트
+│   └── types.ts            # TypeScript 타입 정의
+├── public/                 # 정적 리소스 (index.html 등)
+└── package.json            # 프론트엔드 의존성 및 스크립트
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 실행 방법 (How to Run)
 
-### `npm run build`
+이 프로젝트는 프론트엔드(React)와 백엔드(Node.js) 서버를 각각 실행해야 합니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. 백엔드 실행 (Backend)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+백엔드 서버는 영상 정보 처리 및 Vertex AI API와의 통신을 담당합니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# 백엔드 디렉토리로 이동
+cd click-to-explore/backend
 
-### `npm run eject`
+# 패키지 설치
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# 환경변수 설정
+# .env.local 파일을 생성하고 필요한 설정(예: GCP_PROJECT_ID, GOOGLE_APPLICATION_CREDENTIALS 등)을 입력하세요.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 백엔드 서버 실행 (일반적으로 http://localhost:8080 등에서 실행됨)
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2. 프론트엔드 실행 (Frontend)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+프론트엔드는 사용자에게 보여지는 웹 화면입니다.
 
-## Learn More
+```bash
+# 프로젝트 루트(click-to-explore) 디렉토리에서 실행 (또는 새 터미널 창 열기)
+cd click-to-explore
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# 패키지 설치
+npm install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# 리액트 개발 서버 실행
+npm start
+```
+> 프론트엔드 서버가 실행되면 브라우저에서 자동으로 `http://localhost:3000` 이 열리며 앱을 확인할 수 있습니다.
 
-### Code Splitting
+## 🎬 데모 영상 설정 가이드
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+현재 데모를 위해 두 가지 타입의 영상이 필요합니다. 제작 중인 영상을 아래의 위치나 컴포넌트 설정에 맞게 반영해주세요.
 
-### Analyzing the Bundle Size
+1. **일반 영상 (탐험 전):** `src/components/VideoPlayer.tsx` 등에서 재생할 기본 스토리/광고 영상
+2. **탐험 영상 (Fake 3D 영상):** `src/components/ExploreVideoPlayer.tsx` 모드 진입 시 재생될 공간 이동 영상
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+*팁: 영상 파일은 `public/` 디렉토리 하위에 폴더(예: `public/videos/`)를 만들어 넣거나, 외부 클라우드 스토리지(GCS, S3, YouTube 등)에 업로드 후 해당 URL을 코드 내 상수에 연결하여 사용하는 것을 권장합니다.*
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+*Developed for Google AI Builder Hackathon.*
