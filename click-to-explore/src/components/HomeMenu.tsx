@@ -49,7 +49,7 @@ export const HomeMenu: React.FC<Props> = ({ onSelect }) => {
                 {MOCK_SCENE.title}
               </h1>
               <p className="text-gray-300 text-lg leading-relaxed drop-shadow-md line-clamp-2">
-                구독자 200만 여행 유튜버 빠니보틀과 함께하는 리얼 인도 배낭여행! 혼돈과 낭만이 공존하는 인도 기차 안에서 펼쳐지는 예측불허 에피소드.
+                스위스 알프스의 아찔한 절벽을 오르는 빠니보틀의 생생한 등반기! 한 치 앞도 알 수 없는 살벌한 어드벤처가 지금 시작됩니다. 대자연의 압도적인 풍경과 함께 짜릿한 스릴을 경험해보세요.
               </p>
               <div className="mt-6 flex gap-4">
                 <button className="bg-white text-black px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors flex items-center gap-2">

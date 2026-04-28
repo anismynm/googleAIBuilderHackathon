@@ -110,31 +110,10 @@ export const ExploreVideoPlayer: React.FC<Props> = ({ onExit }) => {
   }, [handleKeyDown]);
 
   return (
-    <div className="absolute inset-0 bg-black flex items-center justify-center overflow-hidden" style={{ perspective: '2000px' }}>
+    <div className="absolute inset-0 bg-black flex items-center justify-center overflow-hidden">
       
-      {/* 3D Grid Environment (Revealed during transition) */}
-      <div 
-        className={`absolute inset-0 transition-opacity duration-[1500ms] ${transitionState === 'entering' ? 'opacity-0' : 'opacity-100'}`}
-        style={{
-          backgroundImage: 'linear-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-          transform: 'rotateX(60deg) translateY(200px) translateZ(-300px)',
-        }}
-      />
-
-      {/* Main Video Content with 3D Transform */}
-      <div 
-        className="relative w-full h-full transition-all duration-[1500ms] ease-[cubic-bezier(0.25,1,0.5,1)] flex items-center justify-center pointer-events-none"
-        style={{
-          transformStyle: 'preserve-3d',
-          transform: transitionState === 'entering' 
-            ? 'translateZ(0px) rotateX(0deg) scale(1)' 
-            : 'translateZ(100px) rotateX(5deg) scale(0.9)',
-          boxShadow: transitionState === 'ready' ? '0 30px 100px rgba(59,130,246,0.3)' : 'none',
-          borderRadius: transitionState === 'ready' ? '24px' : '0px',
-          overflow: 'hidden'
-        }}
-      >
+      {/* Main Video Content */}
+      <div className="relative w-full h-full flex items-center justify-center pointer-events-none overflow-hidden">
         {/* YouTube Video iframe Container */}
         <div ref={containerRef} style={{ width: '100vw', height: '100vh', transform: 'scale(1.2)' }} />
         
@@ -154,18 +133,7 @@ export const ExploreVideoPlayer: React.FC<Props> = ({ onExit }) => {
         </div>
       </div>
 
-      {/* Q3. B2B Demo: 실시간 지표 오버레이 */}
-      <div className={`absolute bottom-10 left-10 bg-black/70 backdrop-blur-md border border-green-500/30 p-4 rounded-xl font-mono text-xs text-green-400 z-40 transition-opacity duration-1000 delay-700 ${transitionState === 'entering' ? 'opacity-0' : 'opacity-100'}`}>
-        <div className="flex items-center gap-2 mb-2 border-b border-green-500/30 pb-2">
-          <Activity size={14} />
-          <span className="font-bold text-white">B2B DEMO METRICS</span>
-        </div>
-        <div className="space-y-1">
-          <p className="flex justify-between gap-4"><span>Avg. Session Time:</span> <span className="text-white">+142 sec</span></p>
-          <p className="flex justify-between gap-4"><span>Genie 3 Latency:</span> <span className="text-white">1.12s (NPU)</span></p>
-          <p className="flex justify-between gap-4"><span>Commerce Intent:</span> <span className="text-white">High (24%)</span></p>
-        </div>
-      </div>
+
 
       {/* Q2. BM: T-Commerce UI */}
       <div className={`absolute right-10 top-1/2 -translate-y-1/2 w-72 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl transition-all duration-700 transform z-40 ${showCommerce ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0 pointer-events-none'}`}>

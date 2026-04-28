@@ -2,9 +2,9 @@ import { SceneData } from './types';
 
 export const MOCK_SCENE: SceneData = {
   id: 'scene-001',
-  title: '빠니보틀: 인도 기차 여행의 모든 것',
-  // 인도 기차/배낭여행 느낌의 이미지
-  baseImageUrl: 'https://images.unsplash.com/photo-1532664189809-02133fee698d?q=80&w=3228&auto=format&fit=crop',
+  title: '살벌한 알프스 산맥 절벽 등반 어드벤처 【스위스2】',
+  // 유튜브 썸네일 이미지
+  baseImageUrl: 'https://img.youtube.com/vi/6RD1vy0mnvo/maxresdefault.jpg',
   objects: []
 };
 
